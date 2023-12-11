@@ -1,0 +1,279 @@
+**********# pandas*******************************
+
+df = pd.read_csv('data.csv')
+print(df.to_string())
+print("\nhead:",df.head())
+print("\ntail:",df.tail())
+===================
+b=df.duplicated().any()
+print(b)
+c=df.drop_duplicates()
+print(c)
+==============
+b=df.loc[3,'Calories']
+print(b)
+============
+b=df.loc[3,'DuraƟon']=30
+print(b)
+========
+#cleaning empty cells
+a = pd.read_csv('data.csv')
+new_a = a.dropna()
+print(new_a.to_string())
+
+
+****************************************KNN**************
+-------------------------------------------------
+6)______________________ k-NN__________________
+import numpy as np
+from sklearn.neighbors import KNeighborsClassifier
+from sklearn.model_selecƟon import train_test_split
+from sklearn.datasets import load_iris
+from sklearn.metrics import accuracy_score
+# Loading data
+irisData = load_iris()
+# Create feature and target arrays
+X = irisData.data
+y = irisData.target
+# Sample dataset
+a = np.array([[1, 2], [2, 3], [3, 4], [3, 1], [4, 2], [2, 1]])
+b = np.array([0, 0, 0, 1, 1, 1]) # Labels
+# Split the dataset into a training set and a test set
+X_train, X_test, y_train, y_test = train_test_split(X, y,
+test_size=0.2, random_state=42)
+# IniƟalize the KNN classifier with k=3
+k = 5
+knn = KNeighborsClassifier(n_neighbors=k)
+# Fit the model to the training data
+knn.fit(X_train, y_train)
+# Predict the labels for the test set
+y_pred = knn.predict(X_test)
+# Calculate accuracy
+accuracy = accuracy_score(y_test, y_pred)
+print(f'Accuracy: {accuracy * 100:.2f}%')
+-------------------------------------------
+*************************************K-MEAN*************
+-----------------------------------------
+10)Program to implement k-means clustering
+technique using any standard dataset available in
+the public domain
+import matplotlib.pyplot as plt
+import pandas as pd
+a = pd.read_csv('100.csv')
+print(a)
+x=a.iloc[:,:].values
+print(x)
+# print(x)
+#no traing test required
+from sklearn.cluster import KMeans
+kmeans=KMeans(init='k-
+means++',n_clusters=2,random_state=0).fit(x)
+p=kmeans.predict(x)
+print(p)
+colors=list(map(lambda x:'#a86b32' if x==1 else
+'#326fa8',p))
+plt.scaƩer(x[:,0],x[:,1],c=colors,marker='*',picker=True
+)
+plt.show()
+
+____________________________________________________________
+*******************naive_bayes*****************
+
+from sklearn.model_selecƟon import train_test_split
+from sklearn.naive_bayes import GaussianNB
+from sklearn.datasets import load_iris
+a=load_iris()
+print(a)
+print("\n\n\n ----------------------------------")
+x=a.data
+print(x)
+y=a.target
+print(y)
+print("\n\n\n ---------------------------------")
+from sklearn.model_selecƟon import train_test_split
+#split dataset into train and test data
+x_train, x_test, y_train, y_test = train_test_split(x, y,
+test_size=30, random_state=0)
+print("\n\n\n ------------------------------")
+from sklearn.naive_bayes import GaussianNB
+c = GaussianNB()
+c.fit(x_train,y_train)
+GaussianNB(priors=None, var_smoothing=1e-09)
+p=c.predict(x_test)
+print(p)
+print(y_test)
+print("\n\n\n ----------------------------")
+from sklearn.metrics import accuracy_score,
+confusion_matrix, classificaƟon_report
+result=confusion_matrix(y_test,p)
+result1=accuracy_score(y_test,p)
+result2=classificaƟon_report(y_test,p)
+print("confusion matrix:\n",result)
+print("accuracy matrix: ",result1)
+print("classificaƟon matrix: \n",result2)
+_________________________________________________________________________________________
+
+
+
+
+
+
+
+
+
+----------------------------------------------
+9)____________________ linear and multiple
+regression techniques using any standard dataset
+available in the public domain and evaluate its
+performance.
+#------linear regression
+from sklearn.datasets import load_iris
+import numpy as np
+# dataset=load_iris()
+x,y =load_iris(return_X_y=True)
+print(x.shape)
+x=x[:,np.newaxis,3]
+print(x.shape)
+print(x)
+=========================
+#splitng
+from sklearn.model_selection import train_test_split
+x_train,x_test,y_train,y_test=train_test_split(x,y,test_
+size=0.25,random_state=0)
+====================
+from sklearn.linear_model import LinearRegression
+as LR
+reg = LR()
+reg.fit(x_train,y_train)
+p = reg.predict(x_test)
+print(p)
+======================
+from sklearn.metrics import mean_squared_error as
+MSE ,r2_score as R2S
+a = MSE(y_test,p)
+b = R2S(y_test,p)
+print(b)
+=======================
+from matplotlib import pyplot as plt
+%matplotlib inline
+plt.scaƩer(x_test,y_test,color="y")
+plt.plot(x_test,p,color="g")
+plt.xlabel("petal.width")
+plt.ylabel("Flower Category")
+=============================
+import numpy as np
+import pandas as pd
+from sklearn.datasets import load_iris
+from sklearn.model_selecƟon import train_test_split
+from sklearn.linear_model import LinearRegression
+from sklearn.metrics import mean_squared_error
+data = load_iris()
+X = data.data
+y = data.target
+# Split the dataset into training and tesƟng sets \
+X_train, X_test, y_train, y_test = train_test_split(X, y,
+test_size=0.2, random_state=42)
+# Linear Regression
+lr_model = LinearRegression()
+lr_model.fit(X_train, y_train)
+lr_predicƟons = lr_model.predict(X_test)
+lr_mse = mean_squared_error(y_test, lr_predicƟons)
+# Print the Mean Squared Error (MSE) for Linear
+Regression
+print(f'Linear Regression MSE: {lr_mse}')
+#-----mulƟple regression ----------------------
+from sklearn.datasets import load_iris
+import numpy as np
+# dataset=load_iris()
+x,y =load_iris(return_X_y=True)
+print(x.shape)
+print(x.shape)
+#spliƟng
+from sklearn.model_selecƟon import train_test_split
+x_train,x_test,y_train,y_test=train_test_split(x,y,test_
+size=0.25,random_state=0)
+from sklearn.linear_model import LinearRegression
+as LR
+reg = LR()
+reg.fit(x_train,y_train)
+p = reg.predict(x_test)
+from sklearn.metrics import mean_squared_error as
+MSE ,r2_score as R2S
+a = MSE(y_test,p)
+b = R2S(y_test,p)
+print(a)
+print(b)
+============================
+
+
+
+__________________ feedforward_______________
+
+
+
+
+
+from sklearn.datasets import load_iris
+from sklearn.model_selecƟon import train_test_split
+from sklearn.metrics import accuracy_score,
+confusion_matrix, classificaƟon_report
+from sklearn.preprocessing import StandardScaler
+from sklearn.neural_network import MLPClassifier
+# Load Iris dataset
+iris = load_iris()
+X = iris.data
+y = iris.target
+# Spliƫng the data into training and tesƟng sets
+X_train, X_test, y_train, y_test = train_test_split(X, y,
+test_size=0.25, random_state=0)
+# IniƟalize StandardScaler
+scaler = StandardScaler()
+# Fit on training data and transform both training and
+test data
+X_train_scaled = scaler.fit_transform(X_train)
+X_test_scaled = scaler.transform(X_test)
+# Create and train the MLPClassifier
+model = MLPClassifier(hidden_layer_sizes=100,
+max_iter=1000, random_state=42)
+model.fit(X_train_scaled, y_train)
+# Predict using the model
+predicƟons = model.predict(X_test_scaled)
+print("PredicƟons:", predicƟons)
+print("\nTrue labels:", y_test)
+# EvaluaƟon metrics
+confusion = confusion_matrix(y_test, predicƟons)
+accuracy = accuracy_score(y_test, predicƟons)
+classificaƟon_rep = classificaƟon_report(y_test,
+predicƟons)
+print("\nConfusion Matrix:")
+print(confusion)
+print("\nAccuracy Score:", accuracy)
+print("\nClassificaƟon Report:")
+print(classificaƟon_rep)
+--------------------------------------------------------------
+12) Program to implement text classification using
+Support vector machine.
+from sklearn.datasets import load_iris
+dataset=load_iris()
+x=dataset.data
+y=dataset.target
+# print(x)
+#spliƟng
+from sklearn.svm import SVC
+from sklearn.model_selection import train_test_split
+x_train,x_test,y_train,y_test=train_test_split(x,y,test_
+size=0.25,random_state=0)
+SVM = SVC(C=1.0, kernel='linear', degree=3,
+gamma='auto')
+SVM.fit(x_train,y_train)
+predicƟons_SVM = SVM.predict(x_test)
+from sklearn.metrics import accuracy_score
+print("SVM Accuracy Score ->
+",accuracy_score(predicƟons_SVM, y_test)*100)
+
+
+
+
+
+
+
